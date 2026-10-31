@@ -1,0 +1,36 @@
+services:
+  db:
+    image: mariadb:10.11
+    container_name: cp1_db
+    restart: unless-stopped
+    environment:
+      MARIADB_ROOT_PASSWORD: rootpass1
+      MARIADB_DATABASE: campuspool
+      MARIADB_USER: cpapp
+      MARIADB_PASSWORD: cpapp1pass
+    ports:
+      - "3407:3306"
+    volumes:
+      - cp1_db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+  web:
+    image: ramishaiftikhar/campuspool:v2
+    container_name: cp1_web
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_HOST: db
+      DB_USER: cpapp
+      DB_PASSWORD: cpapp1pass
+      DB_NAME: campuspool
+      SECRET_KEY: part1-secret
+    ports:
+      - "8100:8000"
+volumes:
+  cp1_db_data:
