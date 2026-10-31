@@ -1,0 +1,16 @@
+{% extends "base.html" %}{% block c %}
+<div class="wrap"><div class="ph"><h1>My trips</h1><p>Rides you offer and seats you requested.</p></div>
+<h2 class="sec"><i data-lucide="car-front"></i>Rides I offer</h2><div class="scroll"><table class="tbl"><tr><th>Route</th><th>Departs</th><th>Seats left</th><th>Status</th><th></th></tr>
+{% for r in mine %}<tr><td><b>{{ r.origin }}</b> to <b>{{ r.destination }}</b></td><td>{{ r.depart_at }}</td><td>{{ r.seats }}</td><td><span class="pill {{ r.status }}">{{ r.status }}</span></td>
+<td>{% if r.status == 'open' %}<form class="in" method="post" action="/rides/{{ r.id }}/cancel"><button class="btn btn-d btn-s">Cancel ride</button></form>{% endif %}</td></tr>
+{% else %}<tr><td colspan="5">You have not offered a ride yet.</td></tr>{% endfor %}</table></div>
+<h2 class="sec"><i data-lucide="inbox"></i>Seat requests on my rides</h2><div class="scroll"><table class="tbl"><tr><th>Passenger</th><th>Route</th><th>Status</th><th></th></tr>
+{% for b in reqs %}<tr><td><b>{{ b.full_name }}</b></td><td>{{ b.origin }} to {{ b.destination }}</td><td><span class="pill {{ b.status }}">{{ b.status }}</span></td>
+<td>{% if b.status == 'pending' %}<form class="in" method="post" action="/bookings/{{ b.id }}/approve"><button class="btn btn-ok btn-s">Approve</button></form>
+<form class="in" method="post" action="/bookings/{{ b.id }}/reject"><button class="btn btn-d btn-s">Reject</button></form>{% endif %}</td></tr>
+{% else %}<tr><td colspan="4">No requests yet.</td></tr>{% endfor %}</table></div>
+<h2 class="sec"><i data-lucide="ticket"></i>Rides I requested</h2><div class="scroll"><table class="tbl"><tr><th>Route</th><th>Departs</th><th>Driver</th><th>Status</th><th></th></tr>
+{% for t in trips %}<tr><td><b>{{ t.origin }}</b> to <b>{{ t.destination }}</b></td><td>{{ t.depart_at }}</td><td>{{ t.driver }}</td><td><span class="pill {{ t.status }}">{{ t.status }}</span></td>
+<td>{% if t.status in ('pending', 'approved') %}<form class="in" method="post" action="/bookings/{{ t.id }}/cancel"><button class="btn btn-d btn-s">Cancel</button></form>{% endif %}</td></tr>
+{% else %}<tr><td colspan="5">You have not requested a seat yet.</td></tr>{% endfor %}</table></div></div>
+{% endblock %}

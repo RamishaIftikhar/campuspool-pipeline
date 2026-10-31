@@ -1,0 +1,38 @@
+services:
+  db:
+    image: mariadb:10.11
+    container_name: cp2_db
+    environment:
+      MARIADB_ROOT_PASSWORD: rootpass2
+      MARIADB_DATABASE: campuspool
+      MARIADB_USER: cpapp
+      MARIADB_PASSWORD: cpapp2pass
+    ports:
+      - "3408:3306"
+    volumes:
+      - cp2_db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+  web:
+    image: python:3.11-slim
+    container_name: cp2_web
+    depends_on:
+      db:
+        condition: service_healthy
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: sh -c "pip install --no-cache-dir -r requirements.txt && gunicorn --bind 0.0.0.0:8000 application:application"
+    environment:
+      DB_HOST: db
+      DB_USER: cpapp
+      DB_PASSWORD: cpapp2pass
+      DB_NAME: campuspool
+      SECRET_KEY: part2-secret
+    ports:
+      - "8200:8000"
+volumes:
+  cp2_db_data:

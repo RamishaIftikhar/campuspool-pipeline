@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block c %}
+<div class="auth"><form method="post" class="fcard"><span class="ico"><i data-lucide="car-front"></i></span><h1>Offer a ride</h1><p>Tell passengers where and when you are going.</p>
+<div class="field"><input name="origin" placeholder=" " required><label>Leaving from</label></div>
+<div class="field"><input name="destination" placeholder=" " required><label>Going to</label></div>
+<div class="field"><input class="up" name="depart_at" type="datetime-local" placeholder=" " required><label>Departure time</label></div>
+<div class="field"><input name="seats" type="number" min="1" value="3" placeholder=" " required><label>Free seats</label></div>
+<div class="field"><input name="price" type="number" min="0" value="0" placeholder=" " required><label>Price per seat (Rs.)</label></div>
+<button class="btn btn-p"><i data-lucide="check"></i>Post ride</button></form></div>
+{% endblock %}

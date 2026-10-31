@@ -1,0 +1,17 @@
+{% extends "base.html" %}{% block c %}
+<div class="wrap"><div class="ph"><h1>Find a ride</h1><p>Open rides from your campus community.</p></div>
+<form method="get" class="bar"><div class="f"><i data-lucide="circle-dot"></i><input name="from" value="{{ o }}" placeholder="Leaving from"></div>
+<div class="f"><i data-lucide="map-pin"></i><input name="to" value="{{ d }}" placeholder="Going to"></div><button class="btn btn-p"><i data-lucide="search"></i>Search</button></form>
+<div class="grid">{% for r in rides %}<div class="card">
+<div class="top"><span class="av">{{ r.full_name[0]|upper }}</span><div class="nm">{{ r.full_name }}<small>Driver</small></div>
+{% if r.seats > 0 %}<span class="pill ok">Available</span>{% else %}<span class="pill full">Full</span>{% endif %}</div>
+<div class="route"><div class="dots"><span class="d1"></span><span class="ln"></span><span class="d2"></span></div>
+<div class="st"><div><small>From</small><b>{{ r.origin }}</b></div><div><small>To</small><b>{{ r.destination }}</b></div></div></div>
+<div class="meta"><span><i data-lucide="calendar-clock"></i>{{ r.depart_at }}</span><span><i data-lucide="users"></i>{{ r.seats }} seat(s) left</span></div>
+<div class="cta"><div class="price">Rs. {{ r.price }}<small> / seat</small></div>
+{% if not session.uid %}<a class="btn btn-g btn-s" href="/login">Log in to book</a>
+{% elif r.driver_id == session.uid %}<span class="pill pending">Your ride</span>
+{% elif r.seats > 0 %}<form class="in" method="post" action="/rides/{{ r.id }}/book"><button class="btn btn-p btn-s">Request seat <i data-lucide="arrow-right"></i></button></form>
+{% else %}<span class="pill full">Full</span>{% endif %}</div></div>
+{% else %}<div class="empty">No open rides match. Try fewer filters or offer one yourself.</div>{% endfor %}</div></div>
+{% endblock %}

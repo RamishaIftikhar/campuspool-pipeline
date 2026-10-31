@@ -1,0 +1,68 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CampusPool</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+<style>
+:root{--navy:#0F172A;--pri:#4F46E5;--pri2:#4338CA;--grn:#10B981;--bg:#F1F5F9;--mut:#64748B;--line:#E2E8F0;--r:16px}
+*{box-sizing:border-box;margin:0}body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg);color:var(--navy);line-height:1.55}
+a{color:inherit;text-decoration:none}.wrap{max-width:1080px;margin:0 auto;padding:0 20px}.lucide{width:18px;height:18px}
+nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:6px;height:64px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.15rem;margin-right:auto}
+.logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--pri),#818CF8);display:grid;place-items:center;color:#fff}
+nav a.l{padding:8px 14px;border-radius:10px;font-weight:600;font-size:.9rem;color:var(--mut);display:flex;align-items:center;gap:6px;transition:.2s}
+nav a.l:hover{background:#EEF2FF;color:var(--pri)}nav a.l.on{color:var(--pri);background:#EEF2FF;box-shadow:inset 0 -2px 0 var(--pri)}
+.me{font-size:.85rem;color:var(--mut);padding:0 8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 18px;border-radius:12px;font-weight:600;font-size:.92rem;font-family:inherit;border:0;cursor:pointer;transition:.2s}
+.btn-p{background:var(--pri);color:#fff;box-shadow:0 6px 16px rgba(79,70,229,.3)}.btn-p:hover{background:var(--pri2);transform:translateY(-2px)}
+.btn-g{background:#fff;color:var(--navy);border:1px solid var(--line)}.btn-g:hover{border-color:var(--pri);color:var(--pri)}
+.btn-s{padding:7px 12px;font-size:.82rem;border-radius:10px}.btn-d{background:#FEF2F2;color:#DC2626}.btn-ok{background:#ECFDF5;color:#059669}
+.btn-d:hover,.btn-ok:hover{filter:brightness(.96)}form.in{display:inline}
+.toast{background:var(--navy);color:#fff;padding:12px 16px;border-radius:12px;margin:16px 0;display:flex;gap:10px;align-items:center;animation:in .4s}
+@keyframes in{from{opacity:0;transform:translateY(-8px)}}
+.hero{background:radial-gradient(900px 400px at 80% -10%,rgba(99,102,241,.55),transparent),var(--navy);color:#fff;padding:72px 0 120px}
+.hero h1{font-size:clamp(2rem,5vw,3.4rem);font-weight:800;line-height:1.1;max-width:640px}.hero p{color:#CBD5E1;max-width:520px;margin:16px 0 28px}
+.hero .row{display:flex;gap:12px;flex-wrap:wrap}.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin-top:-64px}
+.stat{background:#fff;border-radius:var(--r);padding:22px;box-shadow:0 10px 30px rgba(15,23,42,.08);transition:.25s;display:flex;gap:14px;align-items:center}
+.stat:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(79,70,229,.18)}.stat b{font-size:1.9rem;display:block;line-height:1}.stat span{color:var(--mut);font-size:.85rem}
+.ico{width:46px;height:46px;border-radius:12px;background:#EEF2FF;color:var(--pri);display:grid;place-items:center;flex:none}.ico .lucide{width:22px;height:22px}
+.ph{padding:36px 0 14px}.ph h1{font-size:1.8rem;font-weight:800}.ph p{color:var(--mut)}h2.sec{font-size:1.1rem;margin:30px 0 12px;display:flex;align-items:center;gap:8px}
+.bar{display:flex;gap:10px;flex-wrap:wrap;background:rgba(255,255,255,.7);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:var(--r);padding:12px;margin-bottom:20px}
+.bar .f{flex:1;min-width:160px;display:flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:0 12px}
+.bar .f:focus-within{border-color:var(--pri);box-shadow:0 0 0 4px rgba(79,70,229,.14)}.bar input{border:0;outline:0;padding:11px 0;width:100%;font:inherit;background:none}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:18px;margin-bottom:40px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:20px;transition:.25s}.card:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(15,23,42,.09)}
+.top{display:flex;align-items:center;gap:12px}.top .nm{font-weight:700;margin-right:auto}.top small{display:block;color:var(--mut);font-weight:500}
+.av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#6366F1,#10B981);color:#fff;display:grid;place-items:center;font-weight:700;flex:none}
+.route{display:flex;gap:12px;margin:16px 0}.dots{display:flex;flex-direction:column;align-items:center;padding:6px 0}
+.d1,.d2{width:10px;height:10px;border-radius:50%;border:2px solid var(--pri)}.d2{background:var(--pri)}.ln{flex:1;width:2px;background:var(--line);margin:3px 0}
+.route b{display:block}.route .st{display:flex;flex-direction:column;justify-content:space-between;gap:14px}.route small{color:var(--mut)}
+.meta{display:flex;gap:16px;flex-wrap:wrap;color:var(--mut);font-size:.85rem;padding:12px 0;border-top:1px dashed var(--line);margin-bottom:14px}.meta span{display:flex;align-items:center;gap:6px}.meta .lucide{width:15px;height:15px}
+.cta{display:flex;align-items:center;justify-content:space-between;gap:10px}.price{font-weight:800;font-size:1.2rem}.price small{font-weight:500;color:var(--mut);font-size:.75rem}
+.pill{padding:4px 10px;border-radius:99px;font-size:.74rem;font-weight:700;display:inline-flex;align-items:center;gap:5px;text-transform:capitalize}
+.pill.ok,.pill.open,.pill.approved{background:#D1FAE5;color:#047857}.pill.full,.pill.rejected{background:#FEE2E2;color:#B91C1C}.pill.pending{background:#FEF3C7;color:#B45309}.pill.cancelled{background:#E2E8F0;color:#475569}
+.scroll{overflow-x:auto;margin-bottom:10px}.tbl{width:100%;border-collapse:collapse;background:#fff;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);font-size:.92rem}
+.tbl th{background:#F8FAFC;text-align:left;font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:var(--mut)}.tbl td,.tbl th{padding:12px 14px;border-bottom:1px solid var(--line)}.tbl tr:last-child td{border:0}
+.empty{text-align:center;color:var(--mut);padding:40px 10px;background:#fff;border:1px dashed var(--line);border-radius:var(--r);grid-column:1/-1}
+.auth{min-height:calc(100vh - 64px);display:grid;place-items:center;padding:32px 16px}
+.fcard{width:100%;max-width:440px;background:#fff;border-radius:24px;padding:34px;box-shadow:0 24px 60px rgba(15,23,42,.12);border:1px solid var(--line)}
+.fcard h1{font-size:1.5rem;font-weight:800;margin:14px 0 4px}.fcard>p{color:var(--mut);margin-bottom:22px}.fcard .ico{width:52px;height:52px}
+.field{position:relative;margin-bottom:16px}.field input{width:100%;padding:22px 14px 8px;border:1.5px solid var(--line);border-radius:12px;font:inherit;background:#fff;transition:.2s}
+.field input:focus{outline:0;border-color:var(--pri);box-shadow:0 0 0 4px rgba(79,70,229,.14)}
+.field label{position:absolute;left:14px;top:15px;color:var(--mut);font-size:.95rem;pointer-events:none;transition:.18s}
+.field input:focus+label,.field input:not(:placeholder-shown)+label,.field input.up+label{top:6px;font-size:.7rem;font-weight:700;color:var(--pri)}
+.fcard .btn{width:100%;padding:13px}.alt{text-align:center;margin-top:18px;color:var(--mut);font-size:.9rem}.alt a{color:var(--pri);font-weight:700}
+footer{text-align:center;color:var(--mut);font-size:.8rem;padding:30px 0}
+</style></head><body>
+{% set p = request.path %}
+<nav><div class="wrap"><a class="brand" href="/"><span class="logo"><i data-lucide="car-front"></i></span>CampusPool</a>
+<a class="l {{ 'on' if p == '/' }}" href="/"><i data-lucide="house"></i>Home</a>
+<a class="l {{ 'on' if p == '/rides' }}" href="/rides"><i data-lucide="search"></i>Find a ride</a>
+{% if session.uid %}<a class="l {{ 'on' if p == '/rides/new' }}" href="/rides/new"><i data-lucide="plus"></i>Offer a ride</a>
+<a class="l {{ 'on' if p == '/dashboard' }}" href="/dashboard"><i data-lucide="layout-dashboard"></i>My trips</a>
+<span class="me">{{ session.user }}</span><a class="btn btn-g btn-s" href="/logout"><i data-lucide="log-out"></i>Logout</a>
+{% else %}<a class="btn btn-g btn-s" href="/login"><i data-lucide="log-in"></i>Login</a><a class="btn btn-p btn-s" href="/register">Register</a>{% endif %}
+</div></nav>
+<div class="wrap">{% for m in get_flashed_messages() %}<div class="toast"><i data-lucide="info"></i>{{ m }}</div>{% endfor %}</div>
+{% block c %}{% endblock %}
+<footer>&copy; CampusPool &middot; Share the ride, split the cost</footer>
+<script>lucide.createIcons()</script></body></html>

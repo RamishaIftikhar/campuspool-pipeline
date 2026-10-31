@@ -1,0 +1,14 @@
+{% extends "base.html" %}{% block c %}
+<section class="hero"><div class="wrap"><h1>Share the ride to campus, split the cost.</h1>
+<p>Drivers post free seats, students request them, and the driver approves each request. Simple, safe and cheaper than going alone.</p>
+<div class="row"><a class="btn btn-p" href="/rides"><i data-lucide="search"></i>Find a ride</a>
+{% if not session.uid %}<a class="btn btn-g" href="/register">Create free account</a>{% else %}<a class="btn btn-g" href="/rides/new">Offer a ride</a>{% endif %}</div></div></section>
+<div class="wrap"><div class="stats">
+<div class="stat"><span class="ico"><i data-lucide="route"></i></span><div><b>{{ s.rides }}</b><span>Open rides</span></div></div>
+<div class="stat"><span class="ico"><i data-lucide="users"></i></span><div><b>{{ s.users }}</b><span>Total members</span></div></div>
+<div class="stat"><span class="ico"><i data-lucide="armchair"></i></span><div><b>{{ s.seats }}</b><span>Seats booked</span></div></div></div>
+<h2 class="sec" style="margin-top:44px">How it works</h2>
+<div class="grid"><div class="card"><span class="ico"><i data-lucide="map-pin"></i></span><h3 style="margin:12px 0 4px">1. Post or search</h3><small style="color:var(--mut)">Offer a ride with free seats, or search by where you are going.</small></div>
+<div class="card"><span class="ico"><i data-lucide="send"></i></span><h3 style="margin:12px 0 4px">2. Request a seat</h3><small style="color:var(--mut)">One tap sends your request to the driver.</small></div>
+<div class="card"><span class="ico"><i data-lucide="shield-check"></i></span><h3 style="margin:12px 0 4px">3. Get approved</h3><small style="color:var(--mut)">The driver approves and your seat is reserved.</small></div></div></div>
+{% endblock %}
